@@ -1,0 +1,54 @@
+{
+    "name": "PLAYER CONTROL",
+    "maps": [
+        {
+            "name": "Movement",
+            "id": "0ee29364-b139-4a84-9c97-bcd9f636199a",
+            "actions": [
+                {
+                    "name": "FLAP",
+                    "type": "Button",
+                    "id": "1aea38a0-7b7c-4f07-8053-c0c08c2398c0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MOUSE",
+                    "type": "PassThrough",
+                    "id": "55130fc0-eb09-4d28-806b-b60bedd2b7b7",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "756a39a5-a8aa-400f-8a61-97d06c828f94",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "FLAP",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2510489a-1f5c-4f25-93ee-9dd88edae6ea",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MOUSE",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
