@@ -28,7 +28,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
             ""id"": ""0ee29364-b139-4a84-9c97-bcd9f636199a"",
             ""actions"": [
                 {
-                    ""name"": ""FLAP"",
+                    ""name"": ""Flap"",
                     ""type"": ""Button"",
                     ""id"": ""1aea38a0-7b7c-4f07-8053-c0c08c2398c0"",
                     ""expectedControlType"": ""Button"",
@@ -37,13 +37,13 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""MOUSE"",
-                    ""type"": ""PassThrough"",
+                    ""name"": ""Mouse"",
+                    ""type"": ""Value"",
                     ""id"": ""55130fc0-eb09-4d28-806b-b60bedd2b7b7"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -54,7 +54,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""FLAP"",
+                    ""action"": ""Flap"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -65,35 +65,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""MOUSE"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
-            ""name"": ""test"",
-            ""id"": ""64989030-d1f6-40c2-8ac5-e7b96d9d6a2c"",
-            ""actions"": [
-                {
-                    ""name"": ""test"",
-                    ""type"": ""Button"",
-                    ""id"": ""d50e9f81-f9ca-48bd-9f4d-43f9b92515c9"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""aaf7e1fa-94fe-4fa9-abac-f9f4c21e3bb8"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""test"",
+                    ""action"": ""Mouse"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -104,11 +76,8 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
 }");
         // Movement
         m_Movement = asset.FindActionMap("Movement", throwIfNotFound: true);
-        m_Movement_FLAP = m_Movement.FindAction("FLAP", throwIfNotFound: true);
-        m_Movement_MOUSE = m_Movement.FindAction("MOUSE", throwIfNotFound: true);
-        // test
-        m_test = asset.FindActionMap("test", throwIfNotFound: true);
-        m_test_test = m_test.FindAction("test", throwIfNotFound: true);
+        m_Movement_Flap = m_Movement.FindAction("Flap", throwIfNotFound: true);
+        m_Movement_Mouse = m_Movement.FindAction("Mouse", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -168,14 +137,14 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     // Movement
     private readonly InputActionMap m_Movement;
     private IMovementActions m_MovementActionsCallbackInterface;
-    private readonly InputAction m_Movement_FLAP;
-    private readonly InputAction m_Movement_MOUSE;
+    private readonly InputAction m_Movement_Flap;
+    private readonly InputAction m_Movement_Mouse;
     public struct MovementActions
     {
         private @PlayerInput m_Wrapper;
         public MovementActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @FLAP => m_Wrapper.m_Movement_FLAP;
-        public InputAction @MOUSE => m_Wrapper.m_Movement_MOUSE;
+        public InputAction @Flap => m_Wrapper.m_Movement_Flap;
+        public InputAction @Mouse => m_Wrapper.m_Movement_Mouse;
         public InputActionMap Get() { return m_Wrapper.m_Movement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -185,66 +154,29 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_MovementActionsCallbackInterface != null)
             {
-                @FLAP.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnFLAP;
-                @FLAP.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnFLAP;
-                @FLAP.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnFLAP;
-                @MOUSE.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnMOUSE;
-                @MOUSE.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnMOUSE;
-                @MOUSE.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnMOUSE;
+                @Flap.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnFlap;
+                @Flap.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnFlap;
+                @Flap.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnFlap;
+                @Mouse.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnMouse;
+                @Mouse.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnMouse;
+                @Mouse.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnMouse;
             }
             m_Wrapper.m_MovementActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @FLAP.started += instance.OnFLAP;
-                @FLAP.performed += instance.OnFLAP;
-                @FLAP.canceled += instance.OnFLAP;
-                @MOUSE.started += instance.OnMOUSE;
-                @MOUSE.performed += instance.OnMOUSE;
-                @MOUSE.canceled += instance.OnMOUSE;
+                @Flap.started += instance.OnFlap;
+                @Flap.performed += instance.OnFlap;
+                @Flap.canceled += instance.OnFlap;
+                @Mouse.started += instance.OnMouse;
+                @Mouse.performed += instance.OnMouse;
+                @Mouse.canceled += instance.OnMouse;
             }
         }
     }
     public MovementActions @Movement => new MovementActions(this);
-
-    // test
-    private readonly InputActionMap m_test;
-    private ITestActions m_TestActionsCallbackInterface;
-    private readonly InputAction m_test_test;
-    public struct TestActions
-    {
-        private @PlayerInput m_Wrapper;
-        public TestActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @test => m_Wrapper.m_test_test;
-        public InputActionMap Get() { return m_Wrapper.m_test; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(TestActions set) { return set.Get(); }
-        public void SetCallbacks(ITestActions instance)
-        {
-            if (m_Wrapper.m_TestActionsCallbackInterface != null)
-            {
-                @test.started -= m_Wrapper.m_TestActionsCallbackInterface.OnTest;
-                @test.performed -= m_Wrapper.m_TestActionsCallbackInterface.OnTest;
-                @test.canceled -= m_Wrapper.m_TestActionsCallbackInterface.OnTest;
-            }
-            m_Wrapper.m_TestActionsCallbackInterface = instance;
-            if (instance != null)
-            {
-                @test.started += instance.OnTest;
-                @test.performed += instance.OnTest;
-                @test.canceled += instance.OnTest;
-            }
-        }
-    }
-    public TestActions @test => new TestActions(this);
     public interface IMovementActions
     {
-        void OnFLAP(InputAction.CallbackContext context);
-        void OnMOUSE(InputAction.CallbackContext context);
-    }
-    public interface ITestActions
-    {
-        void OnTest(InputAction.CallbackContext context);
+        void OnFlap(InputAction.CallbackContext context);
+        void OnMouse(InputAction.CallbackContext context);
     }
 }
