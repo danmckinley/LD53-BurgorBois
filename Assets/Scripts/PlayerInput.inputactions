@@ -1,5 +1,5 @@
 {
-    "name": "PLAYER CONTROL",
+    "name": "PlayerInput",
     "maps": [
         {
             "name": "Movement",
@@ -44,6 +44,34 @@
                     "processors": "",
                     "groups": "",
                     "action": "MOUSE",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "test",
+            "id": "64989030-d1f6-40c2-8ac5-e7b96d9d6a2c",
+            "actions": [
+                {
+                    "name": "test",
+                    "type": "Button",
+                    "id": "d50e9f81-f9ca-48bd-9f4d-43f9b92515c9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "aaf7e1fa-94fe-4fa9-abac-f9f4c21e3bb8",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "test",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
