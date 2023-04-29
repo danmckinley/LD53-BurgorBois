@@ -10,15 +10,14 @@ public class InputHandler : MonoBehaviour
 {
     [SerializeField] private float flapPower = 1f;
     [SerializeField] private float flapDirectionPower = 1f;
-    
+
     [SerializeField] private float moveSpeed = 1f;
-    
+
     private Rigidbody2D rb;
     private PlayerInput playerInput;
     private Vector2 mousePosition;
 
 
-    
     private void Awake()
     {
         playerInput = new PlayerInput();
@@ -30,25 +29,34 @@ public class InputHandler : MonoBehaviour
         playerInput.Enable();
         playerInput.Movement.Flap.performed += _ => Flap();
     }
-    
+
     void Update()
     {
         mousePosition = Camera.main.ScreenToWorldPoint(playerInput.Movement.Mouse.ReadValue<Vector2>());
+
+        Debug.Log("zoom");
         
-        if (rb.transform.rotation.eulerAngles.z < 270 && rb.transform.rotation.eulerAngles.z > 90f)
+        Vector3 dir = (new Vector3(mousePosition.x - rb.transform.position.x, mousePosition.y - rb.transform.position.y,
+            rb.transform.position.z));
+        
+        float rotation = rb.transform.rotation.eulerAngles.z;
+        float swoopMultiplier;
+        swoopMultiplier =  rotation % 180 ;
+
+        if (rotation > 180)
         {
-            Debug.Log("zoom");
-            //Vector2 newPosition = (new Vector2 (mousePosition.x - rb.transform.position.x , mousePosition.y - rb.transform.position.y)).normalize;
-            //Vector3 dir = new Vector3(newPosition.x , newPosition.y , rb.transform.position.z);
-            //Vector3 dir=(new Vector3 (mousePosition.x - rb.transform.position.x , mousePosition.y - rb.transform.position.y , rb.transform.position.z)).Normalize;
-            rb.AddForce(transform.forward*((float)Math.Pow(2,rb.transform.position.z)));
+            swoopMultiplier = 180 - swoopMultiplier;
         }
-        Debug.Log(mousePosition.x +" "+ mousePosition.y);
-    } 
+
+        rb.AddForce(dir.normalized * ((float)Math.Pow(2, swoopMultiplier/100)));
+
+        Debug.Log($"transform forward {transform.forward}");
+    }
 
     private void FixedUpdate()
     {
-        rb.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(mousePosition.y - rb.position.y, mousePosition.x - rb.position.x) * Mathf.Rad2Deg -  90);
+        rb.transform.rotation = Quaternion.Euler(0, 0,
+            Mathf.Atan2(mousePosition.y - rb.position.y, mousePosition.x - rb.position.x) * Mathf.Rad2Deg - 90);
     }
 
     private void Flap()
@@ -63,8 +71,5 @@ public class InputHandler : MonoBehaviour
         {
             rb.AddForce(new Vector3(flapDirectionPower, flapPower, 0f));
         }
-
-        
     }
 }
-    
