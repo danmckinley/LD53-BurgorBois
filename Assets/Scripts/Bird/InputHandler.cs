@@ -18,7 +18,7 @@ public class InputHandler : MonoBehaviour
     private Rigidbody2D rb;
     private PlayerInput playerInput;
     private Vector2 mousePosition;
-    
+
     private void Awake()
     {
         playerInput = new PlayerInput();
@@ -45,13 +45,13 @@ public class InputHandler : MonoBehaviour
     {
         rb.transform.rotation = Quaternion.Euler(0, 0,
             Mathf.Atan2(mousePosition.y - rb.position.y, mousePosition.x - rb.position.x) * Mathf.Rad2Deg - 90);
-        
+
         Vector3 dir = (new Vector3(mousePosition.x - rb.transform.position.x, mousePosition.y - rb.transform.position.y,
             rb.transform.position.z));
-        
-        
+
+
         Debug.Log($"Move speed {moveSpeed}");
-        
+
         rb.AddForce(dir.normalized * moveSpeed);
     }
 
@@ -61,18 +61,18 @@ public class InputHandler : MonoBehaviour
          * we could pass in the moduluo to this to calculate how much the cursor has changed to prevent
          * gaining superspeed by flicking down then up so bird follows mouse
          */
-        
+
         float rotation = rb.transform.rotation.eulerAngles.z;
         float swoopMultiplier;
         swoopMultiplier = rotation % 180;
-        
+
         if (rotation > 180)
         {
             swoopMultiplier = 180 - swoopMultiplier;
         }
-        
+
         float relativeMouseSpeed = (float)Math.Pow(swoopMultiplier / 35, 2) * 0.6f;
-        
+
         if (relativeMouseSpeed < prevSpeed)
         {
             yield return new WaitForSeconds(.5f);
@@ -85,13 +85,13 @@ public class InputHandler : MonoBehaviour
             {
                 moveSpeed -= 0.5f;
             }
-            
         }
         else
         {
             moveSpeed = relativeMouseSpeed;
             yield return new WaitForSeconds(moveSpeedUpdateInterval);
         }
+
         StartCoroutine(GetMoveSpeedRoutine(moveSpeed));
     }
 
