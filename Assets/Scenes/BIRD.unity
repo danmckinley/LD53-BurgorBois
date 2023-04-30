@@ -203,7 +203,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 633569333}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -16.75, y: 2.24, z: 0}
   m_LocalScale: {x: 0.43432, y: 0.43432, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -247,6 +247,7 @@ MonoBehaviour:
   flapPower: 200
   flapDirectionPower: 50
   moveSpeed: 0
+  moveSpeedUpdateInterval: 0.25
 --- !u!60 &633569339
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -515,7 +516,7 @@ Transform:
   m_GameObject: {fileID: 1672651973}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 2.63, z: 0}
-  m_LocalScale: {x: 12.590399, y: 1, z: 1}
+  m_LocalScale: {x: 30.216959, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1699103862}
@@ -632,7 +633,7 @@ Transform:
   m_GameObject: {fileID: 2014375261}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 21.754, y: 21.754, z: 21.754}
+  m_LocalScale: {x: 54.826603, y: 54.826603, z: 54.826603}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1034352995}
