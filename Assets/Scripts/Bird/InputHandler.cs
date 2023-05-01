@@ -106,7 +106,6 @@ public class InputHandler : MonoBehaviour
 
         FacePlayerToMouse();
         HandleGliding();
-
         AdjustPlayerFacingDirection();
     }
 
@@ -120,18 +119,39 @@ public class InputHandler : MonoBehaviour
         //if (tilt != 0)
         //    transform.Rotate (new Vector3 (0f, 0f, tilt * Time.deltaTime));
        
-        rb.velocity -= Vector2.up * Time.deltaTime;
+        //rb.velocity -= Vector2.up * Time.deltaTime;
         
-        // Velocity
-        Vector2 verticalVelocity = rb.velocity - (Vector2)Vector3.ProjectOnPlane (transform.up, rb.velocity);
-        //fall = vertvel.magnitude;
-        rb.velocity -= verticalVelocity * Time.deltaTime;
-        rb.velocity += verticalVelocity.magnitude * (Vector2)transform.right * Time.deltaTime / 10;
-        Debug.Log($"Bird current velocity: {rb.velocity}");
+        // // Velocity
+        // Vector2 verticalVelocity = rb.velocity - (Vector2)Vector3.ProjectOnPlane (transform.up, rb.velocity);
+        // //fall = vertvel.magnitude;
+        // rb.velocity -= verticalVelocity * Time.deltaTime;
+        // rb.velocity += verticalVelocity.magnitude * (Vector2)transform.right * Time.deltaTime / 10;
+        // Debug.Log($"Bird current velocity: {rb.velocity}");
 
-        // Drag
-        Vector2 drag = rb.velocity - (Vector2)Vector3.ProjectOnPlane ((Vector2)transform.right, rb.velocity);
-        rb.AddForce (-drag * drag.magnitude * Time.deltaTime / 1000);
+        // // Drag
+        // Vector2 drag = rb.velocity - (Vector2)Vector3.ProjectOnPlane ((Vector2)transform.right, rb.velocity);
+        // rb.AddForce (-drag * drag.magnitude * Time.deltaTime / 1000);
+
+        //Vector2 moveVector = rb.velocity.normalized;
+        float rotation = rb.transform.rotation.eulerAngles.z;
+        Debug.Log($"Current Rotation: {rotation}");
+        float lift = 0;
+        float liftMultiplier = rotation % 180;
+
+        if (rotation <= 30f && rotation >= 330f) {
+            Debug.Log("Facing RIGHT");
+        }
+        if (rotation >= 210f && rotation <= 150f) {
+            Debug.Log("Facing RIGHT");
+        }
+
+        if ((rotation <= 30f || rotation >= 330f ) 
+           || (rotation >= 210f || rotation <= 150f)){
+            // applyLift
+            lift = (1 * liftMultiplier/10);
+            Debug.Log("Lift");
+        }
+        rb.AddForce(Vector2.up * lift);
     }
 
     private void FacePlayerToMouse()
