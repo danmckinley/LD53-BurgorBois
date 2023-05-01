@@ -289,7 +289,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 633569333}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.01, y: 1.08, z: 0}
+  m_LocalPosition: {x: 7.61, y: -5.64, z: 0}
   m_LocalScale: {x: 6.106077, y: 6.106077, z: 0}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -396,7 +396,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 1d6b426949bb6734e871578b64c351f4, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -792,6 +792,7 @@ GameObject:
   - component: {fileID: 1907185851}
   - component: {fileID: 1907185854}
   - component: {fileID: 1907185855}
+  - component: {fileID: 1907185856}
   m_Layer: 0
   m_Name: Bebe
   m_TagString: Untagged
@@ -879,7 +880,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1907185850}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.97, y: -6.966, z: 0}
+  m_LocalPosition: {x: 11.17, y: -6.81, z: 0}
   m_LocalScale: {x: 6.357246, y: 6.392998, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -912,14 +913,30 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0
-  m_GravityScale: 0
+  m_LinearDrag: 0.75
+  m_AngularDrag: 0.75
+  m_GravityScale: 0.5
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!58 &1907185856
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1907185850}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.001734931}
+  serializedVersion: 2
+  m_Radius: 0.071734935
 --- !u!1 &2014375261
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,12 +7,12 @@ using UnityEngine.InputSystem;
 
 public class Baby : MonoBehaviour
 {
-
     public bool isHeld = false;
     private PlayerInput playerInput;
     private GameObject bird;
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
+    private CircleCollider2D collider2D;
 
     private void Awake()
     {
@@ -27,6 +27,7 @@ public class Baby : MonoBehaviour
         bird = GameObject.Find("Birb");
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        collider2D = GetComponent<CircleCollider2D>();
     }
 
     private void Start()
@@ -60,14 +61,21 @@ public class Baby : MonoBehaviour
         float distance = Vector3.Distance(birdPosition, babyPosition);
         Debug.Log("Distance: " + distance);
 
-        if (isHeld == false && distance <= 1.5f)
+        if (isHeld == false && distance <= 2f)
         {
             isHeld = true;
-            this.gameObject.transform.localScale = new Vector3(0, 0, 0);
-            bird.GetComponent<Animator>().SetBool("Flapping", true);
+            spriteRenderer.enabled = false;
+            collider2D.enabled = false;
+            bird.GetComponent<Animator>().SetBool("pickedUpBaby", true);
         }
-
+        else if (isHeld)
+        {
+            isHeld = false;
+            gameObject.transform.position = new Vector3(birdPosition.x, birdPosition.y - 1f, birdPosition.z);
+            gameObject.transform.rotation = new Quaternion();
+            bird.GetComponent<Animator>().SetBool("pickedUpBaby", false);
+            collider2D.enabled = true;
+            spriteRenderer.enabled = true;
+        }
     }
 }
-
-
