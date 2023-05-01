@@ -19,7 +19,6 @@ public class InputHandler : MonoBehaviour
     [SerializeField] private FlapCharge objectToSpawn;
 
 
-    private Baby baby;
     private Rigidbody2D rb;
     private PlayerInput playerInput;
     private Vector2 mousePosition;
@@ -57,7 +56,6 @@ public class InputHandler : MonoBehaviour
     {
         playerInput.Enable();
         playerInput.Movement.Flap.performed += _ => Flap();
-        playerInput.Movement.PickUpDrop.performed += _ => PickUpOrDropBaby();
     }
 
     void Update()
@@ -178,13 +176,6 @@ public class InputHandler : MonoBehaviour
                 rb.AddForce(new Vector3(flapDirectionPower, flapPower, 0f));
             }
         }
-    }
-
-    private void PickUpOrDropBaby()
-    {
-        Debug.Log("Ya clicked!");
-        var m = playerInput.Movement.PickUpDrop.ReadValue<float>();
-        Debug.Log(m);
     }
 
     private void AdjustPlayerFacingDirection()
