@@ -11,6 +11,8 @@ using UnityEngine.UIElements;
 
 public class InputHandler : MonoBehaviour
 {
+    
+    [SerializeField] private float rotationResponseModifier = 500f;
     [SerializeField] private float flapPower = 1f;
     [SerializeField] private float flapDirectionPower = 1f;
     [SerializeField] private float moveSpeed = 1f;
@@ -24,6 +26,7 @@ public class InputHandler : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Queue<FlapCharge> flapCharges;
     private Queue<Vector3> chargePos;
+    public float tilt;
 
     private void Awake()
     {
@@ -102,24 +105,52 @@ public class InputHandler : MonoBehaviour
             rb.transform.position.z));
 
         FacePlayerToMouse();
+        HandleGliding();
 
         AdjustPlayerFacingDirection();
     }
 
+    private void HandleGliding()
+    {
+        //tilt = Mathf.Clamp (energy / 100, -8f, 5f);
+        //tilt /= Time.deltaTime * 10;
+        //if (((Vector2)transform.forward + rb.velocity.normalized).magnitude < 1.4)
+        //    tilt += 3f;
+ 
+        //if (tilt != 0)
+        //    transform.Rotate (new Vector3 (0f, 0f, tilt * Time.deltaTime));
+       
+        rb.velocity -= Vector2.up * Time.deltaTime;
+        
+        // Velocity
+        Vector2 verticalVelocity = rb.velocity - (Vector2)Vector3.ProjectOnPlane (transform.up, rb.velocity);
+        //fall = vertvel.magnitude;
+        rb.velocity -= verticalVelocity * Time.deltaTime;
+        rb.velocity += verticalVelocity.magnitude * (Vector2)transform.right * Time.deltaTime / 10;
+        Debug.Log($"Bird current velocity: {rb.velocity}");
+
+        // Drag
+        Vector2 drag = rb.velocity - (Vector2)Vector3.ProjectOnPlane ((Vector2)transform.right, rb.velocity);
+        rb.AddForce (-drag * drag.magnitude * Time.deltaTime / 1000);
+    }
+
     private void FacePlayerToMouse()
     {
-        float rotationSpeed = 500f;
 
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = transform.position.z; // maintain the same Z coordinate as the object
 
         Vector3 direction = mousePos - transform.position;
+        
         float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-        float currentAngle =
-            Mathf.MoveTowardsAngle(transform.eulerAngles.z, targetAngle, rotationSpeed * Time.deltaTime);
+        //float currentAngle =
+        //    Mathf.MoveTowardsAngle(transform.eulerAngles.z, targetAngle, rotationResponseModifier * Time.deltaTime);
 
-        transform.rotation = Quaternion.Euler(0f, 0f, currentAngle);
+        Quaternion rotation = Quaternion.AngleAxis(targetAngle, Vector3.forward); 
+
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationResponseModifier * Time.deltaTime);//Quaternion.Euler(0f, 0f, currentAngle);
+        //rb.AddTorque(Vector3.Cross(rotation.eulerAngles, Vector3.up), ForceMode2D.Impulse);
     }
 
     private IEnumerator GetMoveSpeedRoutine(float prevSpeed)

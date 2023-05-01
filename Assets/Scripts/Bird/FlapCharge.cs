@@ -24,7 +24,7 @@ namespace Bird
 
         private void Update()
         {
-            Debug.Log(spriteRenderer.color);
+            //Debug.Log(spriteRenderer.color);
         }
 
         public void UseFlap()

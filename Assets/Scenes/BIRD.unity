@@ -329,12 +329,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c8287cbf92edac48895d45635cc4047, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotationResponseModifier: 2.5
   flapPower: 350
   flapDirectionPower: 175
   moveSpeed: 0
   moveSpeedUpdateInterval: 0
   flapChargeAmount: 3
   objectToSpawn: {fileID: 7439264266976309554, guid: 1fe86e556e93c974881010a1059115c3, type: 3}
+  tilt: 0
 --- !u!60 &633569339
 PolygonCollider2D:
   m_ObjectHideFlags: 0
