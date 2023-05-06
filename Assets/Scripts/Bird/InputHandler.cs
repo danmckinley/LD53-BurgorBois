@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Bird;
 using Unity.Mathematics;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -18,13 +20,13 @@ public class InputHandler : MonoBehaviour
     [SerializeField] private int flapChargeAmount = 3;
     [SerializeField] private FlapCharge objectToSpawn;
 
-
     private Rigidbody2D rb;
     private PlayerInput playerInput;
     private Vector2 mousePosition;
     private SpriteRenderer spriteRenderer;
     private Queue<FlapCharge> flapCharges;
-    private Queue<Vector3> chargePos;
+    private bool isHoldingBebe;
+    private GameObject heldBaby;
 
     private void Awake()
     {
@@ -32,10 +34,10 @@ public class InputHandler : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         flapCharges = new Queue<FlapCharge>();
-        chargePos = new Queue<Vector3>();
+        isHoldingBebe = false;
 
         float offset = 0f;
-        
+
         for (int i = 0; i < flapChargeAmount; i++)
         {
             var flap = Instantiate(objectToSpawn);
@@ -56,6 +58,7 @@ public class InputHandler : MonoBehaviour
     {
         playerInput.Enable();
         playerInput.Movement.Flap.performed += _ => Flap();
+        playerInput.Movement.PickUpDrop.performed += _ => OnClick();
     }
 
     void Update()
@@ -94,14 +97,6 @@ public class InputHandler : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // Set Gravity
-        // rb.velocity -= (Vector2.up * Time.deltaTime) * 3;
-
-        // Get Mouse Direction
-        Vector3 mouseDir = (new Vector3(mousePosition.x - rb.transform.position.x,
-            mousePosition.y - rb.transform.position.y,
-            rb.transform.position.z));
-
         FacePlayerToMouse();
 
         AdjustPlayerFacingDirection();
@@ -192,4 +187,43 @@ public class InputHandler : MonoBehaviour
         }
     }
 
+    private void OnClick()
+    {
+        if (!isHoldingBebe)
+        {
+            Collider2D[] hitBabyColliders = Physics2D.OverlapCircleAll(new Vector2(rb.position.x, rb.position.y), 2f);
+
+            foreach (Collider2D babyCollider in hitBabyColliders)
+            {
+                if (babyCollider.tag.Equals("Baby"))
+                {
+                    var babySprite = babyCollider.gameObject.GetComponent<SpriteRenderer>();
+
+                    isHoldingBebe = true;
+                    babySprite.enabled = false;
+                    babyCollider.enabled = false;
+                    gameObject.GetComponent<Animator>().SetBool("pickedUpBaby", true);
+                    heldBaby = babyCollider.gameObject;
+                    break;
+                }
+            }
+        }
+        else
+        {
+            var heldBabySpriteRenderer = heldBaby.GetComponent<SpriteRenderer>();
+            var heldBabyCollider = heldBaby.GetComponent<Collider2D>();
+            var heldBabyRigidbody = heldBaby.GetComponent<Rigidbody2D>();
+
+            isHoldingBebe = false;
+            gameObject.GetComponent<Animator>().SetBool("pickedUpBaby", false);
+            heldBaby.transform.position = new Vector3(rb.transform.position.x, rb.transform.position.y - 1f,
+                rb.transform.position.z);
+            heldBaby.transform.rotation = new Quaternion();
+
+            heldBabySpriteRenderer.enabled = true;
+            heldBabyCollider.isTrigger = false;
+            heldBabyCollider.enabled = true;
+            heldBabyRigidbody.gravityScale = 0.5f;
+        }
+    }
 }

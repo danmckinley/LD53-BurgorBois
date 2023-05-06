@@ -22,11 +22,6 @@ namespace Bird
             onCooldownColour = new Color(0.196f,0.196f,0.196f);
         }
 
-        private void Update()
-        {
-            Debug.Log(spriteRenderer.color);
-        }
-
         public void UseFlap()
         {
             isUseable = false;
