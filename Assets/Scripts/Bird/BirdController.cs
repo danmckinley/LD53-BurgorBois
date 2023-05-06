@@ -7,6 +7,7 @@ namespace Bird
 {
     public class BirdController : MonoBehaviour
     {
+        [SerializeField] private float rotationResponseModifier = 5;
         [SerializeField] private float flapPower = 1f;
         [SerializeField] private float flapDirectionPower = 1f;
         [SerializeField] private float moveSpeed = 1f;
@@ -101,24 +102,42 @@ namespace Bird
         private void FixedUpdate()
         {
             FacePlayerToMouse();
-
             AdjustPlayerFacingDirection();
+            HandleGiding();
+        }
+
+        private void HandleGiding()
+        {
+
+            Debug.Log("HandleGliding()");
+
+            // Velocity
+            Vector2 verticalVelocity = rb.velocity - (Vector2)Vector3.ProjectOnPlane (transform.up, rb.velocity);
+            //fall = vertvel.magnitude;
+            //rb.velocity -= verticalVelocity * Time.deltaTime;
+            rb.velocity += verticalVelocity.magnitude * (Vector2)rb.transform.right * Time.deltaTime / 10;
+            //Debug.Log($"Bird current velocity: {rb.velocity}");
+
+            //
+
+            throw new NotImplementedException();
         }
 
         private void FacePlayerToMouse()
         {
-            float rotationSpeed = 500f;
-
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePos.z = transform.position.z; // maintain the same Z coordinate as the object
 
             Vector3 direction = mousePos - transform.position;
+            
             float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-            float currentAngle =
-                Mathf.MoveTowardsAngle(transform.eulerAngles.z, targetAngle, rotationSpeed * Time.deltaTime);
+            //float currentAngle =
+            //    Mathf.MoveTowardsAngle(transform.eulerAngles.z, targetAngle, rotationResponseModifier * Time.deltaTime);
 
-            transform.rotation = Quaternion.Euler(0f, 0f, currentAngle);
+            Quaternion rotation = Quaternion.AngleAxis(targetAngle, Vector3.forward); 
+
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationResponseModifier * Time.deltaTime);
         }
 
         private IEnumerator GetMoveSpeedRoutine(float prevSpeed)
