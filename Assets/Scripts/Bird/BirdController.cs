@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 namespace Bird
@@ -14,15 +15,16 @@ namespace Bird
         [SerializeField] private int flapChargeAmount = 3;
         [SerializeField] private FlapCharge objectToSpawn;
         [SerializeField] private float clickCooldownTime = 1f;
-
+        
         private Rigidbody2D rb;
         private PlayerInput playerInput;
         private Vector2 mousePosition;
         private SpriteRenderer spriteRenderer;
         private Queue<FlapCharge> flapCharges;
-        private bool isHoldingBebe;
-        private GameObject heldBaby;
         private bool isOnClickCooldown;
+
+        public GameObject heldBaby;
+        public bool isHoldingBebe;
 
         private void Awake()
         {
@@ -211,22 +213,7 @@ namespace Bird
                 }
                 else
                 {
-                    var heldBabySpriteRenderer = heldBaby.GetComponent<SpriteRenderer>();
-                    var heldBabyCollider = heldBaby.GetComponent<Collider2D>();
-                    var heldBabyRigidbody = heldBaby.GetComponent<Rigidbody2D>();
-
-                    isHoldingBebe = false;
-                    gameObject.GetComponent<Animator>().SetBool("pickedUpBaby", false);
-                    heldBaby.transform.position = new Vector3(rb.transform.position.x, rb.transform.position.y - 1f,
-                        rb.transform.position.z);
-                    heldBaby.transform.rotation = new Quaternion();
-
-                    heldBabySpriteRenderer.enabled = true;
-                    heldBabyCollider.isTrigger = false;
-                    heldBabyCollider.enabled = true;
-                    heldBabyRigidbody.gravityScale = 0.5f;
-                    isOnClickCooldown = true;
-                    StartCoroutine(OnClickCooldownRoutine());
+                    DropBaby();
                 }
             }
             
@@ -236,6 +223,26 @@ namespace Bird
         {
             yield return new WaitForSeconds(clickCooldownTime);
             isOnClickCooldown = false;
+        }
+
+        public void DropBaby()
+        {
+            var heldBabySpriteRenderer = heldBaby.GetComponent<SpriteRenderer>();
+            var heldBabyCollider = heldBaby.GetComponent<Collider2D>();
+            var heldBabyRigidbody = heldBaby.GetComponent<Rigidbody2D>();
+
+            isHoldingBebe = false;
+            gameObject.GetComponent<Animator>().SetBool("pickedUpBaby", false);
+            heldBaby.transform.position = new Vector3(rb.transform.position.x, rb.transform.position.y - 1f,
+                rb.transform.position.z);
+            heldBaby.transform.rotation = new Quaternion();
+
+            heldBabySpriteRenderer.enabled = true;
+            heldBabyCollider.isTrigger = false;
+            heldBabyCollider.enabled = true;
+            heldBabyRigidbody.gravityScale = 0.5f;
+            isOnClickCooldown = true;
+            StartCoroutine(OnClickCooldownRoutine());
         }
     }
 }
