@@ -12,43 +12,51 @@ namespace Bird
 
         private SpriteRenderer spriteRenderer;
 
+        [SerializeField] private Sprite rechargedSprite;
+        public float flapCooldownTotalSecs = 3f;
+        private float rechargeIntervalSecs;
+        private int cooldownIterations;
+
+        private Sprite defaultSprite;
+        private Color rechargedColour;
         private Color onCooldownColour;
-        private Color notOnCooldownColour;
+        private Color rechargeRGBDiffColour;
 
         private void Start()
         {
             spriteRenderer = GetComponent<SpriteRenderer>();
-            notOnCooldownColour = Color.white;
-            onCooldownColour = new Color(0.196f,0.196f,0.196f);
+            defaultSprite = spriteRenderer.sprite;
+            onCooldownColour = new Color(0.196f, 0.196f, 0.196f);
+            rechargedColour = Color.white;
+            rechargeIntervalSecs = .25f;
+            flapCooldownTotalSecs = 3f;
         }
 
         public void UseFlap()
         {
             isUseable = false;
+            cooldownIterations = (int) Math.Ceiling((flapCooldownTotalSecs - rechargeIntervalSecs)/ rechargeIntervalSecs);
+            var rgbDiff = (float) ((1f - onCooldownColour.r) / cooldownIterations);
+            rechargeRGBDiffColour = new Color(rgbDiff, rgbDiff, rgbDiff);
             spriteRenderer.color = onCooldownColour;
-            StartCoroutine(StartFlapCooldownRoutine());
-            StartCoroutine(ChargeUpAnimationRoutine());
+            StartCoroutine(FlapCooldownRoutine(0, onCooldownColour));
         }
 
-        private IEnumerator StartFlapCooldownRoutine()
+        private IEnumerator FlapCooldownRoutine(int currI, Color currCooldownColour)
         {
-            yield return new WaitForSeconds(3f);
-            isUseable = true;
-        }
+            yield return new WaitForSeconds(rechargeIntervalSecs);
 
-        private IEnumerator ChargeUpAnimationRoutine()
-        {
-            Color c = new Color(0,0,0);
-            
-            for (float i = 0.196f; i < 1; i+= 0.067f)
+            if (currI < cooldownIterations) 
             {
-                c.r = i;
-                c.b = i;
-                c.g = i;
-
-                spriteRenderer.color = c;
-
-                yield return new WaitForSeconds(.25f);
+                Color newColour = currCooldownColour + rechargeRGBDiffColour;
+                spriteRenderer.color = newColour;
+                StartCoroutine(FlapCooldownRoutine(currI + 1, newColour));
+            } else {
+                spriteRenderer.color = rechargedColour;
+                spriteRenderer.sprite = rechargedSprite;
+                yield return new WaitForSeconds(rechargeIntervalSecs);
+                spriteRenderer.sprite = defaultSprite;
+                isUseable = true;
             }
         }
     }
