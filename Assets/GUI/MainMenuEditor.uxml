@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/GUI/GUI.uss?fileID=7433441132597879392&amp;guid=7a73160e42e479546b84e88527398030&amp;type=3#GUI" />
+    <ui:VisualElement name="Background" style="align-items: center; justify-content: center; display: flex; visibility: visible; opacity: 1; padding-left: 0; -unity-background-scale-mode: stretch-to-fill; -unity-background-image-tint-color: rgb(255, 255, 255); background-color: rgb(49, 121, 132); flex-grow: 1;">
+        <ui:Label text="[Title]" name="Title" enable-rich-text="true" focusable="false" class="title" />
+        <ui:Button text="Start" display-tooltip-when-elided="true" name="StartButton" />
+        <ui:Button text="Quit" display-tooltip-when-elided="true" name="QuitButton" />
+    </ui:VisualElement>
+</ui:UXML>
