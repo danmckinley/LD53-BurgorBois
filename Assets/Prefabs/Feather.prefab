@@ -98,3 +98,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isUseable: 1
+  rechargedSprite: {fileID: 21300000, guid: e10dc842f185dc94eb0e87bc95ed710d, type: 3}
+  flapCooldownTotalSecs: 2.75
