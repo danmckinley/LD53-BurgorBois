@@ -53,8 +53,13 @@
     -unity-text-align: upper-center;
 }
 
-.panel-overlay {
-    background-color: rgba(255, 255, 255, 0.5);
+.content {
+    font-size: 32px;
+    color: rgba(255, 255, 255, 255);
+}
+
+.panel {
+    background-color: rgb(99, 155, 255);
     flex-grow: 1;
     align-items: center;
     justify-content: center;
@@ -66,4 +71,8 @@
     margin-right: 0;
     margin-top: 0;
     margin-bottom: 0;
+}
+
+.panel-overlay {
+    background-color: rgba(255, 255, 255, 0.5);
 }
