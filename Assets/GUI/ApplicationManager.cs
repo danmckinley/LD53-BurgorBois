@@ -1,9 +1,12 @@
 using UnityEngine;
 
-public class ApplicationManager : MonoBehaviour
+namespace GUI
 {
-    public void Quit()
+    public class ApplicationManager : MonoBehaviour
     {
-        Application.Quit();
+        public void Quit()
+        {
+            Application.Quit();
+        }
     }
 }

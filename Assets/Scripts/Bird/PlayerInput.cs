@@ -90,6 +90,34 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""GUI"",
+            ""id"": ""b4a53af2-2687-4d43-8534-42c56a006592"",
+            ""actions"": [
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""3f5e2055-fc2c-4c31-9909-ba8686489c0c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""e945a95e-9d1d-455f-b024-be27313231ea"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -99,6 +127,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_Movement_Flap = m_Movement.FindAction("Flap", throwIfNotFound: true);
         m_Movement_Mouse = m_Movement.FindAction("Mouse", throwIfNotFound: true);
         m_Movement_PickUpDrop = m_Movement.FindAction("PickUpDrop", throwIfNotFound: true);
+        // GUI
+        m_GUI = asset.FindActionMap("GUI", throwIfNotFound: true);
+        m_GUI_Pause = m_GUI.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -203,10 +234,47 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         }
     }
     public MovementActions @Movement => new MovementActions(this);
+
+    // GUI
+    private readonly InputActionMap m_GUI;
+    private IGUIActions m_GUIActionsCallbackInterface;
+    private readonly InputAction m_GUI_Pause;
+    public struct GUIActions
+    {
+        private @PlayerInput m_Wrapper;
+        public GUIActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Pause => m_Wrapper.m_GUI_Pause;
+        public InputActionMap Get() { return m_Wrapper.m_GUI; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(GUIActions set) { return set.Get(); }
+        public void SetCallbacks(IGUIActions instance)
+        {
+            if (m_Wrapper.m_GUIActionsCallbackInterface != null)
+            {
+                @Pause.started -= m_Wrapper.m_GUIActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_GUIActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_GUIActionsCallbackInterface.OnPause;
+            }
+            m_Wrapper.m_GUIActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
+            }
+        }
+    }
+    public GUIActions @GUI => new GUIActions(this);
     public interface IMovementActions
     {
         void OnFlap(InputAction.CallbackContext context);
         void OnMouse(InputAction.CallbackContext context);
         void OnPickUpDrop(InputAction.CallbackContext context);
+    }
+    public interface IGUIActions
+    {
+        void OnPause(InputAction.CallbackContext context);
     }
 }

@@ -3,7 +3,6 @@
     -unity-font-definition: url('project://database/Assets/GUI/Kenney%20Mini%20SDF.asset?fileID=11400000&guid=5d5b721fe1cb06f4ab4d3d025e70c9eb&type=2#Kenney Mini SDF');
 }
 
-/* Button style reset */
 .unity-button {
     background-color: rgba(0, 0, 0, 0);
     padding-left: 0;
@@ -32,8 +31,10 @@
     min-width: 256px;
     min-height: 96px;
     font-size: 51px;
-    color: rgba(0, 0, 0, 255);
+    color: rgb(0, 0, 0);
     padding-bottom: 21px;
+    padding-left: 25px;
+    padding-right: 18px;
 }
 
 .unity-button:hover {
@@ -48,5 +49,21 @@
 
 .title {
     font-size: 96px;
-    color: rgba(255, 255, 255, 255);
+    color: rgb(255, 255, 255);
+    -unity-text-align: upper-center;
+}
+
+.panel-overlay {
+    background-color: rgba(255, 255, 255, 0.5);
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
 }
