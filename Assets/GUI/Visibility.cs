@@ -20,5 +20,10 @@ namespace GUI
             visible = value;
             _uiDocument.rootVisualElement.visible = visible;
         }
+
+        public void ToggleVisible()
+        {
+            Visible(!visible);
+        }
     }
 }
