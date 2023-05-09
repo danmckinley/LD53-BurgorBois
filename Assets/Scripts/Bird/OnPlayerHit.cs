@@ -13,7 +13,7 @@ public class OnPlayerHit : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.tag.Equals("Damaging") && bird.isHoldingBebe)
+        if (col.gameObject.tag.Equals("Enemy") && bird.isHoldingBebe)
         {
             baby = bird.heldBaby;
             bird.DropBaby();
