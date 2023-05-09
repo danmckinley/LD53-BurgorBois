@@ -3,13 +3,13 @@ using UnityEngine.UIElements;
 
 namespace GUI
 {
-    public class FinishMenu : MonoBehaviour
+    public class Visibility : MonoBehaviour
     {
         [SerializeField] private bool visible = true;
 
         private UIDocument _uiDocument;
 
-        private void OnEnable()
+        private void Start()
         {
             _uiDocument = GetComponent<UIDocument>();
             Visible(visible);

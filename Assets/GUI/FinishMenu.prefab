@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6628889482873776914}
   - component: {fileID: 5803779031009887311}
-  - component: {fileID: 2052552481171892564}
+  - component: {fileID: 1698150610390407342}
   - component: {fileID: 8330958991624723169}
   - component: {fileID: 1993155439841968157}
   - component: {fileID: 9010885015211719983}
@@ -52,7 +52,7 @@ MonoBehaviour:
   m_ParentUI: {fileID: 0}
   sourceAsset: {fileID: 9197481963319205126, guid: 55f6abcf3d4f37744a30eb25d43deb01, type: 3}
   m_SortingOrder: 0
---- !u!114 &2052552481171892564
+--- !u!114 &1698150610390407342
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -61,16 +61,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2241480761603711366}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 214a2594e2d4e7443b7fae05583f2dbd, type: 3}
+  m_Script: {fileID: 11500000, guid: cf8dd09ad03edd44b84f547090b96a21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  restartButtonClicked:
-    m_PersistentCalls:
-      m_Calls: []
-  mainMenuButtonClicked:
-    m_PersistentCalls:
-      m_Calls: []
-  visible: 1
+  visible: 0
 --- !u!114 &8330958991624723169
 MonoBehaviour:
   m_ObjectHideFlags: 0

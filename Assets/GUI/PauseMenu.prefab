@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6628889482873776914}
   - component: {fileID: 5803779031009887311}
-  - component: {fileID: 6022041153344097971}
+  - component: {fileID: 424044477989465146}
   - component: {fileID: 4544347271367194560}
   - component: {fileID: 8786820239270421807}
   - component: {fileID: 250873883845909190}
@@ -53,7 +53,7 @@ MonoBehaviour:
   m_ParentUI: {fileID: 0}
   sourceAsset: {fileID: 9197481963319205126, guid: 3e44d6bc53ec55d4fb46ac7f7901cca6, type: 3}
   m_SortingOrder: 0
---- !u!114 &6022041153344097971
+--- !u!114 &424044477989465146
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -62,7 +62,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2241480761603711366}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 614e0961a4d1a8a4a8fe404fb0bdea64, type: 3}
+  m_Script: {fileID: 11500000, guid: cf8dd09ad03edd44b84f547090b96a21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   visible: 0
@@ -149,8 +149,8 @@ MonoBehaviour:
   paused:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6022041153344097971}
-        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
+      - m_Target: {fileID: 424044477989465146}
+        m_TargetAssemblyTypeName: GUI.Visibility, Assembly-CSharp
         m_MethodName: Visible
         m_Mode: 0
         m_Arguments:
