@@ -133,7 +133,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1240823773}
   - component: {fileID: 1240823772}
-  - component: {fileID: 1240823774}
+  - component: {fileID: 1240823779}
+  - component: {fileID: 1240823777}
+  - component: {fileID: 1240823778}
   - component: {fileID: 1240823775}
   - component: {fileID: 1240823776}
   m_Layer: 5
@@ -174,63 +176,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1240823774
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1240823771}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b921bdb475b25ea438e1caeec3bf78be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startButtonClicked:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1240823775}
-        m_TargetAssemblyTypeName: GUI.SceneLoader, Assembly-CSharp
-        m_MethodName: LoadScene
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Scenes/BIRD
-          m_BoolArgument: 0
-        m_CallState: 2
-  creditsButtonClicked:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1367011975}
-        m_TargetAssemblyTypeName: GUI.Credits, Assembly-CSharp
-        m_MethodName: Visible
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-  quitButtonClicked:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1240823776}
-        m_TargetAssemblyTypeName: ApplicationManager, Assembly-CSharp
-        m_MethodName: Quit
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1240823775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,6 +200,90 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9660a8de047a38f478cf77a1163858d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1240823777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1240823771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f81248945ab416947becd4d5a69ec25e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonName: CreditsButton
+  callback:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1367011975}
+        m_TargetAssemblyTypeName: GUI.Credits, Assembly-CSharp
+        m_MethodName: Visible
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+--- !u!114 &1240823778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1240823771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f81248945ab416947becd4d5a69ec25e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonName: QuitButton
+  callback:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1240823776}
+        m_TargetAssemblyTypeName: ApplicationManager, Assembly-CSharp
+        m_MethodName: Quit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1240823779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1240823771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f81248945ab416947becd4d5a69ec25e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonName: StartButton
+  callback:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1240823775}
+        m_TargetAssemblyTypeName: GUI.SceneLoader, Assembly-CSharp
+        m_MethodName: LoadScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Scenes/BIRD
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1367011972
 GameObject:
   m_ObjectHideFlags: 0
@@ -265,6 +294,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1367011974}
   - component: {fileID: 1367011973}
+  - component: {fileID: 1367011976}
   - component: {fileID: 1367011975}
   m_Layer: 5
   m_Name: Credits
@@ -316,7 +346,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1b222cd2fb6baf4a99727002e6a4e05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backButtonClicked:
+  visible: 0
+--- !u!114 &1367011976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367011972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f81248945ab416947becd4d5a69ec25e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonName: BackButton
+  callback:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1367011975}
@@ -331,7 +375,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  visible: 0
 --- !u!1 &1549450815
 GameObject:
   m_ObjectHideFlags: 0
