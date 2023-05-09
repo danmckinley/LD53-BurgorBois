@@ -59,6 +59,11 @@ namespace Bird
             playerInput.Movement.PickUpDrop.performed += _ => OnClick();
         }
 
+        private void OnDisable()
+        {
+            playerInput.Disable();
+        }
+
         void Update()
         {
             mousePosition = Camera.main.ScreenToWorldPoint(playerInput.Movement.Mouse.ReadValue<Vector2>());
