@@ -10,9 +10,6 @@ namespace Assets.Scripts.NPCs
         private Rigidbody2D _rb;
         public bool _flyRight;
 
-
-
-        // Use this for initialization
         void Start()
         {
             _spriteRenderer = GetComponent<SpriteRenderer>();
@@ -29,7 +26,6 @@ namespace Assets.Scripts.NPCs
 
         }
 
-        // Update is called once per frame
         void FixedUpdate()
         {
             MoveBird();
@@ -44,20 +40,8 @@ namespace Assets.Scripts.NPCs
             {
                 _rb.MovePosition(transform.position + (new Vector3(- 1, 0, 0) * Time.deltaTime * 5));
                 _spriteRenderer.flipX = true;
-
             }
         }
 
-        private void AdjustPlayerFacingDirection()
-        {
-/*            if (flyRight)
-            {
-                _spriteRenderer.flipY = true;
-            }
-            else
-            {
-                _spriteRenderer.flipY = false;
-            }*/
-        }
     }
 }
