@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class Stage : MonoBehaviour
 {
@@ -7,6 +8,12 @@ public class Stage : MonoBehaviour
     [SerializeField] public UnityEvent<bool> pausedChanged;
 
     private bool _finished;
+
+    public void LoadScene(string scene)
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(scene);
+    }
 
     public void Finish()
     {

@@ -10,10 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6628889482873776914}
   - component: {fileID: 5803779031009887311}
-  - component: {fileID: 1698150610390407342}
   - component: {fileID: 8330958991624723169}
   - component: {fileID: 1993155439841968157}
-  - component: {fileID: 9010885015211719983}
   m_Layer: 0
   m_Name: FinishMenu
   m_TagString: Untagged
@@ -52,19 +50,6 @@ MonoBehaviour:
   m_ParentUI: {fileID: 0}
   sourceAsset: {fileID: 9197481963319205126, guid: 55f6abcf3d4f37744a30eb25d43deb01, type: 3}
   m_SortingOrder: 0
---- !u!114 &1698150610390407342
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2241480761603711366}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf8dd09ad03edd44b84f547090b96a21, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  visible: 0
 --- !u!114 &8330958991624723169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80,19 +65,7 @@ MonoBehaviour:
   buttonName: RestartButton
   callback:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 9010885015211719983}
-        m_TargetAssemblyTypeName: GUI.SceneLoader, Assembly-CSharp
-        m_MethodName: LoadScene
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Scenes/BIRD
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1993155439841968157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108,28 +81,4 @@ MonoBehaviour:
   buttonName: MainMenuButton
   callback:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 9010885015211719983}
-        m_TargetAssemblyTypeName: GUI.SceneLoader, Assembly-CSharp
-        m_MethodName: LoadScene
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Scenes/MainMenu
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &9010885015211719983
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2241480761603711366}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1dd002568dbe414dbd1b46a9b4ddbb7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+      m_Calls: []

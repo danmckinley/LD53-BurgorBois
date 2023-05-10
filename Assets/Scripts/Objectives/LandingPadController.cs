@@ -1,19 +1,16 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class LandingPadController : MonoBehaviour
 {
-    private CapsuleCollider2D capsuleCollider;
-
-    private void Start()
-    {
-        capsuleCollider = GetComponent<CapsuleCollider2D>();
-    }
+    [SerializeField] public UnityEvent babyDelivered;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag.Equals("Baby"))
         {
             Destroy(other.gameObject);
+            babyDelivered?.Invoke();
         }
     }
 }
