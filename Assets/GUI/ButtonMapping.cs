@@ -60,7 +60,8 @@ namespace GUI
             }
             catch
             {
-                // Do nothing.
+                // Assume the connection is disconnected
+                _connected = false;
                 return;
             }
 
