@@ -6,7 +6,10 @@ using UnityEngine.SceneManagement;
 public class Stage : MonoBehaviour
 {
     [SerializeField] public UnityEvent finished;
+    [SerializeField] public UnityEvent<double> finishedWithTime;
     [SerializeField] public UnityEvent<bool> pausedChanged;
+
+    [SerializeField] private Timer timer;
 
     private bool _finished;
 
@@ -32,6 +35,14 @@ public class Stage : MonoBehaviour
         _finished = true;
         Time.timeScale = 0;
         finished?.Invoke();
+        if (timer != null)
+        {
+            finishedWithTime?.Invoke(timer.Elapsed);
+        }
+        else
+        {
+            Debug.LogWarning("`Stage.timer` is null");
+        }
     }
 
     public bool Paused()
