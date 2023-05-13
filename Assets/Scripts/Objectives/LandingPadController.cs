@@ -9,6 +9,7 @@ public class LandingPadController : MonoBehaviour
     {
         if (other.gameObject.tag.Equals("Baby"))
         {
+            gameObject.SetActive(false);
             Destroy(other.gameObject);
             babyDelivered?.Invoke();
         }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
@@ -13,6 +14,17 @@ public class Stage : MonoBehaviour
     {
         Time.timeScale = 1;
         SceneManager.LoadScene(scene);
+    }
+
+    public void Delivered()
+    {
+        var landingPads = GameObject.FindGameObjectsWithTag("LandingPad");
+        var anyActiveLandingPads = landingPads.Any(landingPad => landingPad.activeSelf);
+
+        if (!anyActiveLandingPads)
+        {
+            Finish();
+        }
     }
 
     public void Finish()
