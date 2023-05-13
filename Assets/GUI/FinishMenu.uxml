@@ -4,7 +4,7 @@
         <ui:Label text="You Won!" display-tooltip-when-elided="true" name="Title" class="title" />
         <ui:GroupBox name="TimeBox" style="flex-direction: row;">
             <ui:Label text="Time:" display-tooltip-when-elided="true" name="TimeLabel" focusable="true" class="content" />
-            <ui:Label text="0:00" display-tooltip-when-elided="true" name="Time" focusable="true" class="content" />
+            <ui:Label text="00:00.000" display-tooltip-when-elided="true" name="Time" focusable="true" class="content" />
         </ui:GroupBox>
         <ui:Button text="Restart" display-tooltip-when-elided="true" name="RestartButton" />
         <ui:Button text="Main Menu" display-tooltip-when-elided="true" name="MainMenuButton" />
