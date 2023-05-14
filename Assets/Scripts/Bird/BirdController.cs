@@ -103,24 +103,21 @@ namespace Bird
         {
             FacePlayerToMouse();
             AdjustPlayerFacingDirection();
-            HandleGiding();
+            DoFlyingPhysics();
         }
 
-        private void HandleGiding()
+        private void DoFlyingPhysics()
         {
-
-            Debug.Log("HandleGliding()");
-
             // Velocity
-            Vector2 verticalVelocity = rb.velocity - (Vector2)Vector3.ProjectOnPlane (transform.up, rb.velocity);
+            //Vector2 verticalVelocity = rb.velocity - (Vector2)Vector3.ProjectOnPlane (transform.up, rb.velocity);
             //fall = vertvel.magnitude;
             //rb.velocity -= verticalVelocity * Time.deltaTime;
-            rb.velocity += verticalVelocity.magnitude * (Vector2)rb.transform.right * Time.deltaTime / 10;
+            //rb.velocity += verticalVelocity.magnitude * (Vector2)rb.transform.right * Time.deltaTime / 10;
             //Debug.Log($"Bird current velocity: {rb.velocity}");
 
             //
 
-            throw new NotImplementedException();
+            
         }
 
         private void FacePlayerToMouse()
@@ -138,6 +135,8 @@ namespace Bird
             Quaternion rotation = Quaternion.AngleAxis(targetAngle, Vector3.forward); 
 
             transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationResponseModifier * Time.deltaTime);
+
+
         }
 
         private IEnumerator GetMoveSpeedRoutine(float prevSpeed)
