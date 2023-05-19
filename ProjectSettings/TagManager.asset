@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Baby
   - Enemy
+  - LandingPad
   layers:
   - Default
   - TransparentFX

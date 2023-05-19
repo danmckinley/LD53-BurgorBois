@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/GUI/GUI.uss?fileID=7433441132597879392&amp;guid=7a73160e42e479546b84e88527398030&amp;type=3#GUI" />
+    <ui:GroupBox name="Screen" picking-mode="Ignore" class="panel" style="background-color: rgba(0, 0, 0, 0); justify-content: flex-start;">
+        <ui:GroupBox name="TimeBackground" class="panel panel-overlay" style="flex-grow: 0; padding-left: 32px; padding-right: 32px; padding-bottom: 4px;">
+            <ui:Label text="00:00.000" name="Time" class="content" style="width: 152px; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;" />
+        </ui:GroupBox>
+    </ui:GroupBox>
+</ui:UXML>
