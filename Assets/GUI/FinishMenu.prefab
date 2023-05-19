@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6628889482873776914}
   - component: {fileID: 5803779031009887311}
-  - component: {fileID: 2052552481171892564}
-  - component: {fileID: 9010885015211719983}
+  - component: {fileID: 8330958991624723169}
+  - component: {fileID: 1993155439841968157}
+  - component: {fileID: 3537908571359108092}
   m_Layer: 0
   m_Name: FinishMenu
   m_TagString: Untagged
@@ -50,7 +51,7 @@ MonoBehaviour:
   m_ParentUI: {fileID: 0}
   sourceAsset: {fileID: 9197481963319205126, guid: 55f6abcf3d4f37744a30eb25d43deb01, type: 3}
   m_SortingOrder: 0
---- !u!114 &2052552481171892564
+--- !u!114 &8330958991624723169
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -59,41 +60,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 2241480761603711366}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 214a2594e2d4e7443b7fae05583f2dbd, type: 3}
+  m_Script: {fileID: 11500000, guid: f81248945ab416947becd4d5a69ec25e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  restartButtonClicked:
+  buttonName: RestartButton
+  callback:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 9010885015211719983}
-        m_TargetAssemblyTypeName: GUI.SceneLoader, Assembly-CSharp
-        m_MethodName: LoadScene
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Scenes/BIRD
-          m_BoolArgument: 0
-        m_CallState: 2
-  mainMenuButtonClicked:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 9010885015211719983}
-        m_TargetAssemblyTypeName: GUI.SceneLoader, Assembly-CSharp
-        m_MethodName: LoadScene
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Scenes/MainMenu
-          m_BoolArgument: 0
-        m_CallState: 2
-  visible: 1
---- !u!114 &9010885015211719983
+      m_Calls: []
+--- !u!114 &1993155439841968157
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -102,6 +76,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 2241480761603711366}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1dd002568dbe414dbd1b46a9b4ddbb7, type: 3}
+  m_Script: {fileID: 11500000, guid: f81248945ab416947becd4d5a69ec25e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonName: MainMenuButton
+  callback:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &3537908571359108092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2241480761603711366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87c345156285dee47bf9e9a9e0c0b85a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  labelName: Time
