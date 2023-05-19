@@ -2,6 +2,8 @@
     <Style src="project://database/Assets/GUI/GUI.uss?fileID=7433441132597879392&amp;guid=7a73160e42e479546b84e88527398030&amp;type=3#GUI" />
     <ui:GroupBox name="Background" class="panel">
         <ui:Label text="Credits" display-tooltip-when-elided="true" name="Title" class="title" />
+        <ui:Label text="Created By The Borgor Bois" display-tooltip-when-elided="true" name="Content" class="content" />
+        <ui:Label text="Music: Jack&#10;Art: Tom, Toby, George&#10;Code: George, Zoe, John, Jack, Dan" display-tooltip-when-elided="true" name="Content" class="content" style="-unity-text-align: upper-center;" />
         <ui:Label text="Font: Kenney (www.kenney.nl)" display-tooltip-when-elided="true" name="Content" class="content" />
         <ui:Button text="Back" display-tooltip-when-elided="true" name="BackButton" />
     </ui:GroupBox>
